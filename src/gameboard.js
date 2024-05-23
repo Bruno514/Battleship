@@ -7,9 +7,7 @@ export default class Gameboard {
   }
 
   placeShip(startX, startY, endX, endY) {
-    [startX, startY, endX, endY].map((e) => {
-      if (e > 9 || e < 0) throw new Error("Coordinate is out of bounds");
-    });
+    this.#validateCoords(startX, startY, endX, endY)
 
     const isHorizontal = startX === endX;
     const staticRef = isHorizontal ? startX : startY;
@@ -26,7 +24,7 @@ export default class Gameboard {
       throw new Error("Unavailable ship");
 
     const ship = new Ship(shipLength);
-    this.#removeShip(shipLength)
+    this.#removeShip(shipLength);
 
     for (let ref = startRef; ref <= endRef; ref++) {
       if (isHorizontal) {
@@ -53,9 +51,15 @@ export default class Gameboard {
     return board;
   }
 
+  #validateCoords(...coords) {
+    [...coords].map((e) => {
+      if (e > 9 || e < 0) throw new Error("Coordinate is out of bounds");
+    });
+  }
+
   #removeShip(size) {
     if (this.availableShipsSizes.includes(size)) {
-      const index = this.availableShipsSizes.indexOf(size)
+      const index = this.availableShipsSizes.indexOf(size);
       this.availableShipsSizes.splice(index, 1);
     }
   }

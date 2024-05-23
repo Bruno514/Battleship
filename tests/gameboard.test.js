@@ -111,3 +111,32 @@ test("tries to place unavailable ship of length 2", () => {
     gameboard.placeShip(2, 2, 3, 2);
   }).toThrow("Unavailable ship");
 });
+
+test("attack a ship coordinate", () => {
+  const gameboard = new Gameboard();
+  gameboard.placeShip(2, 0, 3, 0);
+
+  expect(gameboard.receiveAttack(3, 0)).toBe(true);
+});
+
+test("attack the same ship coordinate 2 times", () => {
+  const gameboard = new Gameboard();
+  gameboard.placeShip(2, 0, 3, 0);
+
+  gameboard.receiveAttack(3, 0);
+  expect(gameboard.receiveAttack(3, 0)).toBe(false);
+});
+
+test("miss attack", () => {
+  const gameboard = new Gameboard();
+  gameboard.placeShip(2, 0, 3, 0);
+
+  expect(gameboard.receiveAttack(4, 0)).toBe(false);
+});
+
+test("attack with out bounds coordinate", () => {
+  const gameboard = new Gameboard();
+  gameboard.placeShip(2, 0, 3, 0);
+
+  expect(() => {gameboard.receiveAttack(4, 0)}).toThrow("Coordinate is out of bounds");
+});
