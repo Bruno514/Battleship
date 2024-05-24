@@ -1,4 +1,5 @@
 import Gameboard from "../src/gameboard";
+import Ship from "../src/ship";
 
 test("check if gameboard is generated correctly", () => {
   const sampleBoard = [
@@ -138,5 +139,28 @@ test("attack with out bounds coordinate", () => {
   const gameboard = new Gameboard();
   gameboard.placeShip(2, 0, 3, 0);
 
-  expect(() => {gameboard.receiveAttack(4, 0)}).toThrow("Coordinate is out of bounds");
+  expect(() => {
+    gameboard.receiveAttack(14, 0);
+  }).toThrow("Coordinate is out of bounds");
+});
+
+test("all ships have sunk", () => {
+  const gameboard = new Gameboard();
+  gameboard.ships = [new Ship(2), new Ship(2)];
+
+  gameboard.placeShip(2, 0, 3, 0);
+  gameboard.placeShip(2, 1, 3, 1);
+
+  gameboard.receiveAttack(2, 0);
+  gameboard.receiveAttack(3, 0);
+  gameboard.receiveAttack(2, 1);
+  gameboard.receiveAttack(3, 1);
+
+  expect(gameboard.areAllShipsSunk()).toBe(true);
+});
+
+test("none of the ships have sunk", () => {
+  const gameboard = new Gameboard();
+
+  expect(gameboard.areAllShipsSunk()).toBe(false);
 });

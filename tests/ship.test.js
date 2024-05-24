@@ -1,3 +1,4 @@
+import { experiments } from "webpack";
 import Ship from "../src/ship";
 
 test("sink ship of length 4", () => {
