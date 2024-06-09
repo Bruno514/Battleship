@@ -12,6 +12,8 @@ export default class Gameboard {
       new Ship(5),
     ];
 
+    this.shipsOnBoard = 0;
+
     this.attackTries = [];
   }
 
@@ -44,6 +46,8 @@ export default class Gameboard {
         this.board[staticRef][ref] = ship;
       }
     }
+
+    this.shipsOnBoard++;
   }
 
   receiveAttack(x, y) {
@@ -61,6 +65,10 @@ export default class Gameboard {
 
       return true;
     }
+  }
+
+  allAllShipsPlaced() {
+    return this.shipsOnBoard == 6;
   }
 
   areAllShipsSunk() {

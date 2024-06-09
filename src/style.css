@@ -8,12 +8,12 @@
 
 header {
   padding: 1rem;
-  background-color: #C7B7A3;
+  background-color: #c7b7a3;
   margin-bottom: 1rem;
 }
 
 .name {
-  font: 1.5rem 'Black Ops One', display;
+  font: 1.5rem "Black Ops One", display;
 }
 
 .grid-container {
@@ -31,6 +31,10 @@ header {
 .cell {
   border: 2px solid gray;
 }
-.cell:hover, .cell:active{
-  background-color: #C7B7A3;
+.cell:hover,
+.cell:active {
+  background-color: #c7b7a3;
+}
+.cell.ship {
+  background-color: black;
 }

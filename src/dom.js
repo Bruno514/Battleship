@@ -25,6 +25,14 @@ function domController() {
     document.querySelector("main").append(gridContainer);
   };
 
+  const renderGrids = (playerGrid, oponentGrid) => {
+    
+  }
+
+  const addEventListeners = () => {
+
+  }
+
   const _loadHeader = () => {
     const header = document.createElement("header");
     const divName = document.createElement("div");
