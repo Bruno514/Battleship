@@ -10,12 +10,13 @@ module.exports = {
     clean: true,
   },
   devServer: {
-    static: './dist',
+    static: "./dist",
   },
-  devtool: 'inline-source-map',
+  devtool: "inline-source-map",
   plugins: [
     new HtmlWebpackPlugin({
       title: "Battleship",
+      template: "./src/template.html",
     }),
   ],
   module: {
@@ -31,6 +32,16 @@ module.exports = {
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
         type: "asset/resource",
+      },
+      {
+        test: /\.(?:js|mjs|cjs)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: [["@babel/preset-env", { targets: "defaults" }]],
+          },
+        },
       },
     ],
   },

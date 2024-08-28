@@ -12,7 +12,11 @@ header {
   margin-bottom: 1rem;
 }
 
-.name {
+main {
+  width: auto;
+}
+
+.header-title {
   font: 1.5rem 'Black Ops One', display;
 }
 
@@ -33,4 +37,10 @@ header {
 }
 .cell:hover, .cell:active{
   background-color: #C7B7A3;
+}
+.ship {
+  background-color: blue;
+}
+.cell.selected {
+  background-color: red;
 }
