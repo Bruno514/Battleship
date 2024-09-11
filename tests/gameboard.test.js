@@ -22,23 +22,23 @@ test("check if gameboard is generated correctly", () => {
 
 test("check if ship is place correctly (horizontally following right)", () => {
   const gameboard = new Gameboard();
-  gameboard.placeShip(2, 0, 2, 2);
+  gameboard.placeShip(0, 2, 2, 2);
 
   for (let i = 0; i <= 2; i++) {
-    expect(gameboard.board[i][2]).not.toBe(0);
+    expect(gameboard.board[2][i]).not.toBe(0);
   }
 });
 
 test("check if ship is place correctly (vertically following downwards)", () => {
   const gameboard = new Gameboard();
-  gameboard.placeShip(2, 0, 4, 0);
+  gameboard.placeShip(0, 2, 0, 4);
 
   for (let i = 2; i <= 4; i++) {
-    expect(gameboard.board[0][i]).not.toBe(0);
+    expect(gameboard.board[i][0]).not.toBe(0);
   }
 });
 
-test("check if ship is place correctly (horizontally following left)", () => {
+test("check if ship is place correctly (vertically following upwards)", () => {
   const gameboard = new Gameboard();
   gameboard.placeShip(2, 2, 2, 0);
 
@@ -47,9 +47,9 @@ test("check if ship is place correctly (horizontally following left)", () => {
   }
 });
 
-test("check if ship is place correctly (vertically following upwards)", () => {
+test("check if ship is place correctly (horizontally following left)", () => {
   const gameboard = new Gameboard();
-  gameboard.placeShip(2, 0, 4, 0);
+  gameboard.placeShip(4, 0, 2, 0);
 
   for (let i = 2; i <= 4; i++) {
     expect(gameboard.board[0][i]).not.toBe(0);
@@ -125,7 +125,9 @@ test("attack the same ship coordinate 2 times", () => {
   gameboard.placeShip(2, 0, 3, 0);
 
   gameboard.receiveAttack(3, 0);
-  expect(gameboard.receiveAttack(3, 0)).toBe(false);
+  expect(() => {
+    gameboard.receiveAttack(3, 0);
+  }).toThrow("Place is already hit");
 });
 
 test("miss attack", () => {
