@@ -125,7 +125,9 @@ test("attack the same ship coordinate 2 times", () => {
   gameboard.placeShip(2, 0, 3, 0);
 
   gameboard.receiveAttack(3, 0);
-  expect(gameboard.receiveAttack(3, 0)).toBe(false);
+  expect(() => {
+    gameboard.receiveAttack(3, 0);
+  }).toThrow("Place is already hit");
 });
 
 test("miss attack", () => {
