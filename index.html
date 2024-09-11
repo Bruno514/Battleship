@@ -8,9 +8,19 @@
   <body>
     <header>
       <div class="header-title">Battleship</div>
+      <button class="btn-play">Start</button>
     </header>
     <main>
-      <h1>s</h1>
+      <div class="game-info">
+        <h1>Available ships</h1>
+        <div class="available-ships-container"></div>
+        <p class="game-info-message"></p>
+      </div>
     </main>
+    <div class="modal hidden restart-game-modal">
+      <p>Player won!</p>
+      <button class="btn-restart-game">RESTART</button>
+    </div>
+    <div class="overlay hidden"></div>
   </body>
 </html>
